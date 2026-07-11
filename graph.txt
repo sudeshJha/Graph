@@ -1,0 +1,18 @@
+------------------------------------ GRAPH 
+Is is a non-linear datastructure
+it is same as discrete mathematics graph
+
+
+------------------------------------ GRAPH REPRESENTATION
+1. Adjacency Matrix 
+- map indexes of the matrix
+- O(v^2) space complexity
+
+
+2. Adjacency List
+- stored in a map
+- how transition from one vertex(key) of the graph
+- HashMap<Integer,List<Integer>> map
+- O(V + E) space complexity
+- V:vertices and E:edges
+
