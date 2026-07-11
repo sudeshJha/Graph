@@ -1,4 +1,15 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
+
+class Pair{
+    int child;
+    int parent;
+
+    Pair(int child, int parent){
+        this.child = child;
+        this.parent = parent;
+    }
+}
 
 class GraphCycle{
     // ----------------------------------------------------------------
@@ -23,6 +34,36 @@ class GraphCycle{
         }
         
         return false;
+    }
+
+    // ----------------------------------------------------------------
+    // ------------------------------------- UNDIRECTED GRAPH USING BFS
+    private boolean solveUndirected(ArrayList<ArrayList<Integer>> adj, boolean[] visited, int el){
+        
+        LinkedList<Pair> q = new LinkedList<Pair>();
+        q.offer(new Pair(el, -1));
+        
+        while(!q.isEmpty()){
+        
+            int u = q.peek().child;
+            int parent = q.poll().parent;
+            visited[u] = true;
+            
+            for(int v : adj.get(u)){
+                if(v == parent){
+                    continue;
+                }
+                
+                if(visited[v]){
+                    return true;
+                }
+                
+                q.offer(new Pair(v, u));
+            }
+        }
+        
+        return false;
+        
     }
     
     // ----------------------------------------------------------------------
@@ -49,7 +90,7 @@ class GraphCycle{
         boolean[] visited = new boolean[V];
         
         for(int u=0;u<V;u++){
-            if(!visited[u] && solveUndirected(adj, visited, u, -1)){
+            if(!visited[u] && solveUndirected(adj, visited, u)){
                 return true;
             }
         }
