@@ -16,3 +16,6 @@ it is same as discrete mathematics graph
 - O(V + E) space complexity
 - V:vertices and E:edges
 
+---------------------------------
+
+- to find shortest path we use BFS(level order)
