@@ -12,6 +12,27 @@ class Pair{
 }
 
 class GraphCycle{
+
+    // ----------------------------------------------------------------
+    // ------------------------------------- UNDIRECTED GRAPH USING BFS
+    private boolean solveDirected(ArrayList<ArrayList<Integer>> adj, boolean[] visited, boolean[] inRec, int u){
+        visited[u] = true;
+        inRec[u] = true;
+        
+        for(int v : adj.get(u)){
+            if(visited[v] && inRec[v]) return true;
+            
+            if(!visited[v]){
+                if(solveDirected(adj, visited, inRec, v)) return true;
+            } 
+        }
+        
+        inRec[u] = false;
+        
+        return false;
+    }
+    
+    
     // ----------------------------------------------------------------
     // ------------------------------------- UNDIRECTED GRAPH USING DFS
     private boolean solveUndirected(ArrayList<ArrayList<Integer>> adj, boolean[] visited, int u, int parent){
@@ -65,6 +86,38 @@ class GraphCycle{
         return false;
         
     }
+
+    // ----------------------------------------------------------------------
+    // ------------------------------------- DIRECTED GRAPH CYCLE DETECTION
+    boolean directedGraphCycleDetection(int V, int[][] edges) {
+        
+        ArrayList<ArrayList<Integer>> adj = new ArrayList<ArrayList<Integer>>();
+        
+        // initialise the array in the 2-d array
+        for(int i=0;i<V;i++){
+            adj.add(new ArrayList<Integer>());
+        }
+        
+        // creating a graph matrix from edges
+        for(int[] edge : edges){
+            int u = edge[0];
+            int v = edge[1];
+            
+            adj.get(u).add(v);
+        }
+        
+        // creating visited array to track the vertices
+        boolean[] visited = new boolean[V];
+        boolean[] inRec = new boolean[V];
+        
+        for(int u=0;u<V;u++){
+            if(!visited[u] && solveDirected(adj, visited, inRec, u)){
+                return true;
+            }
+        }
+        
+        return false;
+    }
     
     // ----------------------------------------------------------------------
     // ------------------------------------- UNDIRECTED GRAPH CYCLE DETECTION
@@ -101,9 +154,10 @@ class GraphCycle{
     public static void main(String[] args){
         GraphCycle gc = new GraphCycle();
 
-        int[][] edges = {{1,2},{2,3},{1,3}};
+        int[][] edges = {{0,1},{1,2},{2,3},{3,0}};
         int V = 4;
 
-        System.out.println(gc.undirectedGraphCycleDetection(V, edges));
+        // System.out.println(gc.undirectedGraphCycleDetection(V, edges));
+        System.out.println(gc.directedGraphCycleDetection(V, edges));
     }
 }
