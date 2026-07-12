@@ -14,7 +14,7 @@ class Pair{
 class GraphCycle{
 
     // ----------------------------------------------------------------
-    // ------------------------------------- UNDIRECTED GRAPH USING BFS
+    // ------------------------------------- DIRECTED GRAPH USING DFS
     private boolean solveDirected(ArrayList<ArrayList<Integer>> adj, boolean[] visited, boolean[] inRec, int u){
         visited[u] = true;
         inRec[u] = true;
@@ -30,6 +30,38 @@ class GraphCycle{
         inRec[u] = false;
         
         return false;
+    }
+
+    private boolean solveDirected(ArrayList<ArrayList<Integer>> adj, int[][] edges ){
+        int[] inDegree = new int[adj.size()];
+        for(int[] edge : edges){
+            inDegree[edge[1]]++;
+        }
+
+        LinkedList<Integer> q = new LinkedList<Integer>();
+
+        for(int i=0;i<inDegree.length;i++){
+            if(inDegree[i] == 0){
+                q.offer(i);
+            }
+        }
+        int nodeCount = 0;
+        while(!q.isEmpty()){
+            int u = q.poll();
+            nodeCount++;
+
+            for(int v : adj.get(u)){
+                inDegree[v]--;
+
+                if(inDegree[v] == 0){
+                    q.offer(v);
+                }
+            }
+        }
+
+        if(nodeCount == adj.size()) return false;
+
+        return true;
     }
     
     
@@ -105,7 +137,11 @@ class GraphCycle{
             
             adj.get(u).add(v);
         }
+
+        // ------------------------------
+        return solveDirected(adj, edges);
         
+        /*
         // creating visited array to track the vertices
         boolean[] visited = new boolean[V];
         boolean[] inRec = new boolean[V];
@@ -117,6 +153,7 @@ class GraphCycle{
         }
         
         return false;
+        */
     }
     
     // ----------------------------------------------------------------------
