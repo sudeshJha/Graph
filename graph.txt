@@ -19,3 +19,5 @@ it is same as discrete mathematics graph
 ---------------------------------
 
 - to find shortest path we use BFS(level order)
+
+- sirf directed acyclic graph me topological sorting hoti h
