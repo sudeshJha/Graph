@@ -20,4 +20,10 @@ it is same as discrete mathematics graph
 
 - to find shortest path we use BFS(level order)
 
-- sirf directed acyclic graph me topological sorting hoti h
+- sirf directed acyclic graph (DAG) me topological sorting hoti h
+
+- topological sorting using BFS is called Kahn's Algorithm
+
+- indegree => if a node is child node of some other node then that node is called indegree
+
+- toplogical order -> in degree wise 

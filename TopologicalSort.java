@@ -17,12 +17,69 @@ class TopologicalSort{
             
             return;
       }
+
+      static void topoSortDFS(ArrayList<ArrayList<Integer>> adj, int V){
+            LinkedList<Integer> st = new LinkedList<Integer>();
+            boolean[] visited = new boolean[V];
+            
+            for(int u=0;u<V;u++){
+                  if(!visited[u]){
+                        topologicalSortDFS(adj, visited, st, u);
+                  }
+            }
+            
+            while(!st.isEmpty()){
+                  System.out.print(st.pop() + " ");
+            }
+      }
+
+      static void topologicalSortBFS(ArrayList<ArrayList<Integer>> adj,LinkedList<Integer> q, int[] inDegree){
+            for(int i=0;i<inDegree.length;i++){
+                  if(inDegree[i] == 0){
+                        q.offer(i);
+                  }
+            }
+
+            while(!q.isEmpty()){
+                  int u = q.poll();
+                  System.out.println(u);
+
+                  for(int v : adj.get(u)){
+                        inDegree[v]--;
+
+                        if(inDegree[v] == 0){
+                              q.offer(v);
+                        }
+                  }
+            }
+
+            return;
+      }
+      
+      
+      static void topoSortBFS(ArrayList<ArrayList<Integer>> adj, int V, int[][] edges) {
+            
+            int[] inDegree = new int[V];
+            LinkedList<Integer> q = new LinkedList<Integer>();            
+      
+            for(int[] edge : edges){
+                  int u = edge[0];
+                  int v = edge[1];
+                  
+                  inDegree[v]++;
+            }
+            
+            topologicalSortBFS(adj, q, inDegree);
+            return;
+      }
+
+      
     
       public static void main(String[] args) {
             
             int[][] edges = {{1, 3}, {2, 3}, {4, 1}, {4, 0}, {5, 0}, {5, 2}};
             int V = 6;
-
+     
             ArrayList<ArrayList<Integer>> adj = new ArrayList<ArrayList<Integer>>();
             
             for(int i=0;i<V;i++){
@@ -36,17 +93,7 @@ class TopologicalSort{
                   adj.get(u).add(v);
             }
             
-            LinkedList<Integer> st = new LinkedList<Integer>();
-            boolean[] visited = new boolean[V];
-            
-            for(int u=0;u<V;u++){
-                  if(!visited[u]){
-                        topologicalSortDFS(adj, visited, st, u);
-                  }
-            }
-            
-            while(!st.isEmpty()){
-                  System.out.print(st.pop() + " ");
-            }
+            // topoSortDFS(adj, V);
+            topoSortBFS(adj, V, edges);
       }
 }
