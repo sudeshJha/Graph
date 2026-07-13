@@ -27,3 +27,12 @@ it is same as discrete mathematics graph
 - indegree => if a node is child node of some other node then that node is called indegree
 
 - toplogical order -> in degree wise 
+
+--------------------------------- BIPARTITE GRAPH
+if a graph nodes are colored using 2-colors such that no two adjacent nodes have same color is called a bipartite graph
+
+Graph with odd length cycle is a Non-Bipartite graph
+Else every graph is bipartite graph
+
+question like grouping/dividing a graph -> Bipartite question
+ham graph ko do group me divide krte h yha pr, using 2 colors
