@@ -1,8 +1,9 @@
+------------------------------------------
 ------------------------------------ GRAPH 
 Is is a non-linear datastructure
 it is same as discrete mathematics graph
 
-
+---------------------------------------------------------
 ------------------------------------ GRAPH REPRESENTATION
 1. Adjacency Matrix 
 - map indexes of the matrix
@@ -16,7 +17,8 @@ it is same as discrete mathematics graph
 - O(V + E) space complexity
 - V:vertices and E:edges
 
----------------------------------
+---------------------------------------------------------
+---------------------------------------------------------
 
 - to find shortest path we use BFS(level order)
 
@@ -28,6 +30,7 @@ it is same as discrete mathematics graph
 
 - toplogical order -> in degree wise 
 
+-------------------------------------------------
 --------------------------------- BIPARTITE GRAPH
 if a graph nodes are colored using 2-colors such that no two adjacent nodes have same color is called a bipartite graph
 
@@ -36,3 +39,12 @@ Else every graph is bipartite graph
 
 question like grouping/dividing a graph -> Bipartite question
 ham graph ko do group me divide krte h yha pr, using 2 colors
+
+----------------------------------------------------
+--------------------------------- DISJOINT SET UNION
+Disjoint Set -> when the intersection of two sets is null are called disjoint sets
+
+Disjoint Set Union has two operations-
+Also called Union Find Algorithm cuz it combines the set and finds the element
+1. combine two given sets
+2. tell if two members belong to same set or not
