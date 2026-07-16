@@ -30,6 +30,8 @@ it is same as discrete mathematics graph
 
 - toplogical order -> in degree wise 
 
+- time complexity for Dijkstra Algorithm - V(logV + E.logV) -> E.V.logV
+
 -------------------------------------------------
 --------------------------------- BIPARTITE GRAPH
 if a graph nodes are colored using 2-colors such that no two adjacent nodes have same color is called a bipartite graph
@@ -48,3 +50,4 @@ Disjoint Set Union has two operations-
 Also called Union Find Algorithm cuz it combines the set and finds the element
 1. combine two given sets
 2. tell if two members belong to same set or not
+
